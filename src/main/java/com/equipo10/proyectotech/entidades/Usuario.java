@@ -18,4 +18,7 @@ public class Usuario {
 
     private Rol rol;
 
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comentario> comentarios;
+
 }
