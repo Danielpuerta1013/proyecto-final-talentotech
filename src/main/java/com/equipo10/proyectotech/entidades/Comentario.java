@@ -17,7 +17,13 @@ public class Comentario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String comentario;
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "emprendimiento_id", nullable = false)
     private Emprendimiento emprendimiento;
 
 }
