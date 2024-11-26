@@ -14,5 +14,10 @@ public class Emprendimiento {
     private Long id;
     private String nombre;
     private String descripcion;
+
+    @Enumerated(EnumType.STRING)
     private TipoCategoria tipoCategoria;
+
+    @OneToMany(mappedBy = "emprendimiento", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comentario> comentarios;
 }
