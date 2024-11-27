@@ -2,7 +2,7 @@ package com.equipo10.proyectotech.entidades;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.Id;
+
 
 @Entity
 @Table(name = "emprendimientos")
@@ -25,4 +25,8 @@ public class Emprendimiento {
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo_categoria", nullable = false)
     private TipoCategoria tipoCategoria;
+
+    @ManyToOne
+    @JoinColumn(name = "id_ciudad", nullable = false)
+    private Ciudad ciudad;
 }
