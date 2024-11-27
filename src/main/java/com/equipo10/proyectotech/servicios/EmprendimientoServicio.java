@@ -13,6 +13,9 @@ public class EmprendimientoServicio {
 
 
     public void save(Emprendimiento emprendimiento) {
+        if (emprendimiento == null) {
+            throw new IllegalArgumentException("El emprendimiento no puede ser nulo");
+        }
         emprendimientoRepositorio.save(emprendimiento);
     }
 
@@ -28,6 +31,9 @@ public class EmprendimientoServicio {
     }
 
     public void update(Emprendimiento emprendimiento) {
+        if (emprendimiento == null || emprendimiento.getId() == null) {
+            throw new IllegalArgumentException("El emprendimiento o su ID no puede ser nulo");
+        }
         var optionalEmprendimiento= this.emprendimientoRepositorio.findById(emprendimiento.getId())
                 .orElseThrow(()-> new IllegalArgumentException("Emprendimiento no encontrado"));
         optionalEmprendimiento.setNombre(emprendimiento.getNombre());

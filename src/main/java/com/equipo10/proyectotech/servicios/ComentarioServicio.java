@@ -30,9 +30,12 @@ public class ComentarioServicio {
 
 
     public void update(Comentario comentario) {
-        var optionalComentario= comentarioRepositorio.findById(comentario.getId())
-                .orElseThrow(()-> new IllegalArgumentException("Comentario no encontrado"));
-        optionalComentario.setComentario(comentario.getComentario());
-        comentarioRepositorio.save(optionalComentario);
+        if (comentario == null || comentario.getId() == null) {
+            throw new IllegalArgumentException("El comentario o su ID no puede ser nulo");
+        }
+        Comentario comentarioExistente = comentarioRepositorio.findById(comentario.getId())
+                .orElseThrow(() -> new IllegalArgumentException("Comentario no encontrado"));
+        comentarioExistente.setComentario(comentario.getComentario());
+        comentarioRepositorio.save(comentarioExistente);
     }
 }

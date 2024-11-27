@@ -11,6 +11,9 @@ public class UsuarioServicio {
     private final IUsuarioRepositorio usuarioRepositorio;
 
     public void save(Usuario usuario) {
+        if (usuario == null) {
+            throw new IllegalArgumentException("El usuario no puede ser nulo");
+        }
         usuarioRepositorio.save(usuario);
     }
 
@@ -20,6 +23,8 @@ public class UsuarioServicio {
     }
 
     public void delete(Long id) {
+        var optionalUsuario= this.usuarioRepositorio.findById(id)
+                .orElseThrow(()-> new IllegalArgumentException("Usuario no encontrado"));
         usuarioRepositorio.deleteById(id);
     }
 

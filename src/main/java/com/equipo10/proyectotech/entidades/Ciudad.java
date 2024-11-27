@@ -1,17 +1,19 @@
 package com.equipo10.proyectotech.entidades;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import org.springframework.data.annotation.Id;
 
 @Entity
-@Table(name = "Ciudades")
+@Table(name = "ciudades")
 public class Ciudad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_ciudad")
     private Long id;
+
+    @Column(name = "nombre_ciudad", nullable = false, length = 100)
     private String nombre;
+
+    @Column(name = "departamento", nullable = false, length = 100)
     private String departamento;
 }
